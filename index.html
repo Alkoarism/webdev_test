@@ -6,6 +6,7 @@
     </head>
     
     <!-- Do not add <b> and <i> tags, they don´t have relevance over other tags -->
+    <!-- Don´t use attributes with lists. It´s deprecated and now changes are made with CSS-->
 
     <body>
         <h1>Hello!</h1>
@@ -14,9 +15,22 @@
             Be it ordered, unordered an description type lists
         </p>
         <dl>
-            <dt>Small HTML test page and text display: </dt>
-            <dd><a href="page2.html">Page 2</a></dd>
-
+            <dt><em>Small HTML test pages:</em></dt>
+            <dd>
+                <ul>
+                    <li><a href="page2.html">Page 2</a></li>
+                    <li><a href="img.html">Image testing</a></li>
+                </ul>
+            </dd>
+            <dt><em>Quick concept tests:</em></dt>
+            <dd>
+                <dl>
+                    <dt>External sites linking:</dt>
+                    <dd><a href="https://github.com/Alkoarism/webdev_test/blob/main/index.html"
+                        target="_blank" rel="noopener noreferrer">My beaultiful github page!</a>
+                    </dd>
+                </dl>
+            </dd>
         </dl>
     </body>
 </html>
