@@ -1,0 +1,32 @@
+h1{
+    text-align: center;
+}
+
+main{
+    border-block: solid;
+    background-color: HSL(60, 100%, 85%);
+    writing-mode: horizontal-tb;
+    text-indent: 2%;
+    text-align: justify;
+}
+
+h2{
+    text-align: center;
+}
+
+#main-section{
+    margin: 2%;
+}
+
+#main-section img{
+    width: 95%;
+    height: auto;
+}
+
+footer{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
