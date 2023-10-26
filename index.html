@@ -1,47 +1,64 @@
 <!DOCTYPE html>
 <html lang="eng">
-    <meta charset="UTF-8">
     <head>
-        <link rel="stylesheet" href="css/index_style.css">
+        <meta charset="UTF-8">        
         <title>Another title test</title>
+        <link rel="stylesheet" href="css/core.css">
     </head>
     
     <!-- Do not add <b> and <i> tags, they don´t have relevance over other tags -->
     <!-- Don´t use attributes with lists. It´s deprecated and now changes are made with CSS-->
 
     <body>
-        <h1>Hello!</h1>
-        <h2>This is the homepage for now...</h2>
-        <p>Note that this page is, by itself, a test of concept. Namely lists.
-            Be it ordered, unordered an description type lists
-        </p>
-        <dl>
-            <dt><em>Small HTML test pages:</em></dt>
-            <dd>
-                <ul>
-                    <li><a href="tag_text.html">Text and tag test</a></li>
-                    <li><a href="img.html">Image testing</a></li>
-                </ul>
-            </dd>
-            <dt><em>Projects:</em></dt>
-            <dd>
-                <ul>
-                    <li><a href="recipes_project/recipes_home.html">Recipes web page</a></li>
-                    <li>
-                        <a href="recipes_project_styled/recipes_home_styled.html">
-                        Recipes web page: With Style</a>
-                    </li>
-                </ul>
-            </dd>
-            <dt><em>Quick concept tests:</em></dt>
-            <dd>
-                <ul>
-                    <li>External sites linking:
-                    <a href="https://github.com/Alkoarism"
-                        target="_blank" rel="noopener noreferrer">My beaultiful github page!</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
+        <header>
+            <h1>Project Warehouse</h1>
+        </header>
+
+        <main>
+            <h2>Hello there! This is the Homepage</h2>
+
+            <section id="main-section">
+                <p>Welcome to my project warehouse. Here is the place where I intend to
+                expose to the world whater I've been working with, or some old stuff I've
+                already moved on from. By itself this page is intended to be (in a 
+                I-wish-not-so-distant-future) the homepage for my curriculum. For the time 
+                being though, it is simply a testground for projects to come.</p>
+
+                <dl>
+                    <dt><em>Small HTML test pages:</em></dt>
+                    <dd>
+                        <ul>
+                            <li><a href="tag_text.html">Text and tag test</a></li>
+                            <li><a href="img.html">Image testing</a></li>
+                        </ul>
+                    </dd>
+                    <dt><em>Projects:</em></dt>
+                    <dd>
+                        <ul>
+                            <li><a href="recipes_project/recipes_home.html">Recipes web page</a></li>
+                            <li>
+                                <a href="recipes_project_styled/recipes_home_styled.html">
+                                Recipes web page: With Style</a>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dt><em>Quick concept tests:</em></dt>
+                    <dd>
+                        <ul>
+                            <li>External sites linking:
+                            <a href="https://github.com/Alkoarism"
+                                target="_blank" rel="noopener noreferrer">My beaultiful github page!</a>
+                            </li>
+                        </ul>
+                    </dd>
+                </dl>
+            </section>
+        </main>
+
+        <footer>
+            <p>
+                <strong>Page ver.:</strong>0.2
+            </p>
+        </footer>
     </body>
 </html>
