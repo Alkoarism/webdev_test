@@ -7,7 +7,6 @@ main{
     border-radius: 20px;
     background-color: HSL(60, 100%, 85%);
     writing-mode: horizontal-tb;
-    text-indent: 2%;
     text-align: justify;
 }
 
@@ -22,6 +21,10 @@ h2{
 #main-section img{
     width: 95%;
     height: auto;
+}
+
+p{
+    text-indent: 2%;
 }
 
 footer{
