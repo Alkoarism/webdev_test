@@ -15,6 +15,7 @@ button{
 }
 
 ul{
+    flex-direction: row;
     list-style-type: none;
 }
 
@@ -23,7 +24,7 @@ a{
 }
 
 /*flex containers*/
-header, header ul, .top, .place_holder{
+header, ul, .top, .place_holder, .mid{
     display: flex;
 }
 
@@ -59,7 +60,6 @@ header{
 }
 
 header ul{
-    flex-direction: row;
     gap: 40px;
 }
 
@@ -79,6 +79,37 @@ header ul{
     width: 500px;
     height: 225px;
     border-radius: 25px;
+}
+
+.mid{
+    padding: 0px 0px 60px 0px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.mid h2{
+    font-size: 36px;
+    font-weight: bolder;
+    color: #1F2937;
+    margin: 40px;
+}
+
+.mid ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+.mid li{
+    width: 10vw;
+    margin: 0vw 2vw;
+}
+
+.mid img{
+    width: 10vw;
+    height: 10vw;
+    border-radius: 1vw;
+    border: 3px solid #3882f6
 }
 
 /*----------Footer---------------------------------*/
