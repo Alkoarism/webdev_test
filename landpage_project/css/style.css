@@ -12,7 +12,7 @@ button{
     background-color: #3882f6;
     width: 100px;
     height: 30px;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 10px 0px;
 }
 
@@ -26,7 +26,7 @@ a{
 }
 
 /*flex containers*/
-header, ul, .top, .place_holder, .mid, .quotation{
+header, ul, section, .place_holder{
     display: flex;
 }
 
@@ -132,6 +132,20 @@ header ul{
 
 .author{
     font-weight: bolder;
+}
+
+.subscribe{
+    background-color: #3882f6;
+    margin: 60px 10%;
+    padding: 30px 10%;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    color: #f9faf8;
+}
+
+.subscribe button{
+    border: 1px solid #f9faf8;
 }
 
 /*----------Footer---------------------------------*/
