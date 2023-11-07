@@ -52,7 +52,7 @@ console.log(9 * num1, num1 ** 3, num2/ num1);
 //Not so simple operations:
 console.log(5 + 10 * 3, (num2 % 9) * num1, num2 + num1/8 + 2);
 
-//Now, the good stuff:
+//A simple state change function:
 const btn = document.querySelector("button");
 const txt = document.querySelector("p");
 
