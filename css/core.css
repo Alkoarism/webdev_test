@@ -6,8 +6,8 @@
     padding: 0px;
 }
 
-header, footer, section{
-    padding: 10px 10%;
+body{
+    min-height: 100vh;
 }
 
 ul{
@@ -19,8 +19,16 @@ a{
     text-decoration: none;
 }
 
-header, section{
+header, footer, section{
+    padding: 10px 5%;
+}
+
+header, section, body, article{
     display: flex;
+}
+
+section, body{
+    flex-direction: column;
 }
 
 header, footer, footer a{
@@ -29,6 +37,14 @@ header, footer, footer a{
 
 header, footer{
     background-color: #00216d;
+}
+
+#introduction, #test-pages{
+    background-color: #dcdcdc;
+}
+
+h1, h2{
+    font-style: italic;
 }
 
 /*--------------------Header-------------------------------------------------*/
@@ -41,11 +57,55 @@ header{
 }
 
 header h1{
-    font-style: italic;
     font-size: 20px;
     margin: 10px 0px;
 }
 
+/*--------------------Main Page----------------------------------------------*/
+section{
+    text-align: justify;
+}
+
+section p{
+    margin: 10px 0px;
+    text-indent: 3%;
+}
+
+section img, .description{
+    margin: 2vh;
+}
+
+section img{
+    width: 40vw;
+    height: auto;
+    border-radius: 1vw;
+}
+
+.reverse{
+    flex-direction: row-reverse;
+}
+
+h2{
+    text-align: center;
+}
+
+article{
+    padding: 1vw 0px;
+}
+
+section{
+    padding: 50px 5%;
+}
+
+#projects{
+    background-color: #a7aed3;
+}
+
+#test-pages{
+    flex-grow: 1;
+}
+
+/*--------------------Footer-------------------------------------------------*/
 footer{
     text-align: center;
 }
@@ -53,10 +113,3 @@ footer{
 footer p{
     padding-bottom: 5px;
 }
-
-/*--------------------Main Page----------------------------------------------*/
-section{
-    flex-direction: column;
-}
-
-/*--------------------Footer-------------------------------------------------*/
