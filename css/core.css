@@ -79,6 +79,7 @@ section img{
     width: 40vw;
     height: auto;
     border-radius: 1vw;
+    border: .3vw solid #00216d;
 }
 
 .reverse{
@@ -95,10 +96,6 @@ article{
 
 section{
     padding: 50px 5%;
-}
-
-#projects{
-    background-color: #a7aed3;
 }
 
 #test-pages{
