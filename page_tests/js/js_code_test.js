@@ -1,3 +1,5 @@
+//Console item manipulation script
+
 //Dado que o código seja escrito corretamente, ";" se torna dispensável
 console.log("Console Version of Hello World!")
 
@@ -52,18 +54,27 @@ console.log(9 * num1, num1 ** 3, num2/ num1);
 //Not so simple operations:
 console.log(5 + 10 * 3, (num2 % 9) * num1, num2 + num1/8 + 2);
 
-//A simple state change function:
-const btn = document.querySelector("button");
-const txt = document.querySelector("p");
+console.log("Day 2 of learning this wondrous language.");
 
-btn.addEventListener("click", updateBtn);
+//Strage type testing:
+console.log(1/0);
+console.log("Not a Number" / 2);
+console.log(NaN + 1);
+console.log(3 * NaN);
+console.log(NaN ** 0); //Of all the math rules NaN could refuse to obey they chose this one...
 
-function updateBtn(){
-    if (btn.textContent === "Do the thing!"){
-        btn.textContent = "Undo the thing";
-        txt.textContent = "Oh boy, it's done now. :(";
-    } else{
-        btn.textContent = "Do the thing!";
-        txt.textContent = "Guess what will be done. :)";
-    }
-}
+//special strings:
+const someone = "Carlos";
+console.log(`Hi's name is ${someone}!`);
+console.log(`Well, this is some funky quote... ${1 + "Awooga!"}`);
+console.log(`Now, for a funkier quote: ${null + NaN + "Funky" + Infinity + true}`)
+
+console.log(typeof 0, 
+    typeof 14n, 
+    typeof true, 
+    typeof NaN, 
+    typeof null, //This is not a object... It´s a "special" value with a type of it´s own
+    typeof Symbol("id"),
+    typeof alert, //This is also wrong, being technically a special object called function
+    typeof Math);
+
