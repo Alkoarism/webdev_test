@@ -69,9 +69,35 @@ function login(){
         } else if(logPassword === "TheMaster") {
             logOutput.textContent += "Welcome!";
         } else{
-            logOutput.textContent += "Wrong password"
+            logOutput.textContent += "Wrong password";
         }
     } else{
         logOutput.textContent += "I don't know you.";
+    }
+}
+
+//Anime selection
+const select = document.querySelector("select");
+const para = document.querySelector(".anime-choice");
+
+select.addEventListener("change", setAnime);
+
+function setAnime(){
+    const choice = select.value;
+    switch(choice){
+        case "naruto":
+            para.textContent = "Good show overral, high amounts of filler episodes, but an engaging with and well written story";
+            break;
+        case "one-piece":
+            para.textContent = "Really long series in progress to this day. If you are ready to undertake this journey, it will surely reveal itself as a worthy one.";
+            break;
+        case "bleach":
+            para.textContent = "Got a recente new season progressing through the story. The animation, story, music and graphics are better than ever before.";
+            break;
+        case "dragon-ball":
+            para.textContent = "Is and will forever be a classic. Lost is´s former roots along the way, but a huge sensatino nonetheless.";
+            break;
+        default:
+            para.textContent = "";
     }
 }
