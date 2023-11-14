@@ -102,3 +102,27 @@ if(""){
 } else{
     console.log("No empty space");
 }
+
+//Arrow function:
+const materials = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+
+/*ok, so hear me out:
+This is a log command (that runs on a browser api) which prints a text on console.
+The text to be printed is an array given by the map function, which takes each element of an array in order
+and may apply a transformation on each element.
+Such transformation (in this case) is an arrow function call that takes a 
+text input and returns it´s lenght.*/
+console.log(materials.map((material) => material.length));
+
+//function agument type testing:
+function simpleSum(a, b){
+    return a + b;
+}
+
+function simpleMultiplication(a, b){
+    return a * b;
+}
+
+function lowerCaseString(string){
+    return string.toLowerCase();
+}

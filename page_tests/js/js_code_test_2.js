@@ -101,3 +101,11 @@ function setAnime(){
             para.textContent = "";
     }
 }
+
+//Anonnymous function:
+const textBox = document.querySelector("#keyboard-detec");
+const typed = document.querySelector(".typed");
+
+textBox.addEventListener("keydown", function (event) {
+    typed.textContent = `You typed: "${event.key}"`;
+})
