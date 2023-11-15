@@ -126,3 +126,21 @@ function simpleMultiplication(a, b){
 function lowerCaseString(string){
     return string.toLowerCase();
 }
+
+//I´ve lost count of the days...
+//Fizz Buzz exercise:
+function fizzBuzz(a){
+    for (let i = 1; i <= a; i++){
+        const div3 = i%3;
+        const div5 = i%5;
+        let print = "";
+        if (div3 === 0 || div5 === 0){
+            if (div3 === 0) {print += "Fizz";}
+            if (div5 === 0) {print += "Buzz";}
+        } else {
+            print = i;
+        }
+
+        console.log(print);
+    }
+}
