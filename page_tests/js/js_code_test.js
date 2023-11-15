@@ -1,3 +1,5 @@
+//Console item manipulation script
+
 //Dado que o código seja escrito corretamente, ";" se torna dispensável
 console.log("Console Version of Hello World!")
 
@@ -35,7 +37,7 @@ console.log(typeof myFloat);
 const lotsOfDecimals = 1.15613183153831;
 console.log(lotsOfDecimals);
 const twoDecimalPlaces = lotsOfDecimals.toFixed(2);
-console.log(twoDecimalPlaces)
+console.log(twoDecimalPlaces);
 
 //Stringo to number conversion
 let myNumber = "74";
@@ -52,18 +54,93 @@ console.log(9 * num1, num1 ** 3, num2/ num1);
 //Not so simple operations:
 console.log(5 + 10 * 3, (num2 % 9) * num1, num2 + num1/8 + 2);
 
-//A simple state change function:
-const btn = document.querySelector("button");
-const txt = document.querySelector("p");
+console.log("Day 2 of learning this wondrous language.");
 
-btn.addEventListener("click", updateBtn);
+//Strage type testing:
+console.log(1/0);
+console.log("Not a Number" / 2);
+console.log(NaN + 1);
+console.log(3 * NaN);
+console.log(NaN ** 0); //Of all the math rules NaN could refuse to obey they chose this one...
 
-function updateBtn(){
-    if (btn.textContent === "Do the thing!"){
-        btn.textContent = "Undo the thing";
-        txt.textContent = "Oh boy, it's done now. :(";
-    } else{
-        btn.textContent = "Do the thing!";
-        txt.textContent = "Guess what will be done. :)";
+//special strings:
+const someone = "Carlos";
+console.log(`Hi's name is ${someone}!`);
+console.log(`Well, this is some funky quote... ${1 + "Awooga!"}`);
+console.log(`Now, for a funkier quote: ${null + NaN + "Funky" + Infinity + true}`);
+
+console.log(typeof 0, 
+    typeof 14n, 
+    typeof true, 
+    typeof NaN, 
+    typeof null, //This is not a object... It´s a "special" value with a type of it´s own
+    typeof Symbol("id"),
+    typeof alert, //This is also wrong, being technically a special object called function
+    typeof Math);
+
+console.log("Day 3 of learning this wondrous language.");
+
+//some crazy logical operations in js:
+console.log(true||"Not printed");
+console.log(false||"Printed"); //or condition is not limited to boolean
+
+if(1 && 0){
+    alert("This won't be printed");
+} else{
+    console.log("This, however, will be printed.");
+}
+
+/*The first alert will be shown as it needs to be evaluated before
+    conversion to boolean and thus, change to undefined, 2 will be
+    evaluated as true as son, the comparisons halt*/
+//alert(alert(1) || 2 || alert(3));
+
+if(""){
+    console.log("Empty string");
+} else if (" " == "   "){
+    console.log("Single spaced string");
+} else{
+    console.log("No empty space");
+}
+
+//Arrow function:
+const materials = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+
+/*ok, so hear me out:
+This is a log command (that runs on a browser api) which prints a text on console.
+The text to be printed is an array given by the map function, which takes each element of an array in order
+and may apply a transformation on each element.
+Such transformation (in this case) is an arrow function call that takes a 
+text input and returns it´s lenght.*/
+console.log(materials.map((material) => material.length));
+
+//function agument type testing:
+function simpleSum(a, b){
+    return a + b;
+}
+
+function simpleMultiplication(a, b){
+    return a * b;
+}
+
+function lowerCaseString(string){
+    return string.toLowerCase();
+}
+
+//I´ve lost count of the days...
+//Fizz Buzz exercise:
+function fizzBuzz(a){
+    for (let i = 1; i <= a; i++){
+        const div3 = i%3;
+        const div5 = i%5;
+        let print = "";
+        if (div3 === 0 || div5 === 0){
+            if (div3 === 0) {print += "Fizz";}
+            if (div5 === 0) {print += "Buzz";}
+        } else {
+            print = i;
+        }
+
+        console.log(print);
     }
 }

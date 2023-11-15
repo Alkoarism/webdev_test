@@ -1,5 +1,5 @@
 # webdev_test
 
-My first repo using CLI
+My first repo usign HTML, CSS and Javascript.
 
-Yeah! I´m a Pro Grammar :)
+You can preview the page, it's contents and available interactions here: https://alkoarism.github.io/webdev_test/
