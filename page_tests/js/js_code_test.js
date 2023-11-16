@@ -130,6 +130,7 @@ function lowerCaseString(string){
 //I´ve lost count of the days...
 //Fizz Buzz exercise:
 function fizzBuzz(a){
+    let result = "";
     for (let i = 1; i <= a; i++){
         const div3 = i%3;
         const div5 = i%5;
@@ -141,6 +142,7 @@ function fizzBuzz(a){
             print = i;
         }
 
-        console.log(print);
+        result += `${print}\n`;
     }
+    console.log(result);
 }
