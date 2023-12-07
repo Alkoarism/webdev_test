@@ -1,0 +1,10 @@
+/*-------------------------------------Game Specific Styles------------------*/
+#game-board{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+#game-board li{
+    display: flex;
+}
