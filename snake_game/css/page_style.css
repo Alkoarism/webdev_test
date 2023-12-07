@@ -17,6 +17,10 @@ body, main{
     flex-direction:column;
 }
 
+footer, header{
+    background-color: #86B049;
+}
+
 a{
     text-decoration: none;
 }
@@ -29,9 +33,11 @@ header{
 /*-------------------------------------Main Section--------------------------*/
 main{
     flex-grow: 1;
+    padding: 1% 0px;
 }
 
 /*-------------------------------------Footer--------------------------------*/
 footer{
     text-align: center;
+    padding: 1%;
 }

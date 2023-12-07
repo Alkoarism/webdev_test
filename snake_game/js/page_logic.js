@@ -1,4 +1,7 @@
+//-------------------------------------Page Constants--------------------------
+const mainSection = document.querySelector("main");
+
 //-------------------------------------Page Functions--------------------------
 
 //-------------------------------------Page Control----------------------------
-createBoard(50, 50, 5);
+gameInit(mainSection.offsetWidth, mainSection.offsetHeight);

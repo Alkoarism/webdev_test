@@ -1,10 +1,16 @@
 /*-------------------------------------Game Specific Styles------------------*/
-#game-board{
+#game-container, #game-board, #game-board li{
     display: flex;
-    flex-direction: column;
-    list-style-type: none;
+    justify-content: space-around;
+    align-items: center;
 }
 
-#game-board li{
-    display: flex;
+#game-container{
+    align-items: center;
+    justify-content: space-around;
+}
+
+#game-board{
+    flex-direction: column;
+    list-style-type: none;
 }
