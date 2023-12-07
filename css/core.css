@@ -64,6 +64,7 @@ header h1{
 /*--------------------Main Page----------------------------------------------*/
 section{
     text-align: justify;
+    padding: 50px 5%;
 }
 
 section p{
@@ -92,10 +93,6 @@ h2{
 
 article{
     padding: 1vw 0px;
-}
-
-section{
-    padding: 50px 5%;
 }
 
 #test-pages{
