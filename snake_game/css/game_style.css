@@ -1,8 +1,7 @@
 /*-------------------------------------Game Specific Styles------------------*/
 #game-container, #game-board, #game-board li{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-shrink: 1;
 }
 
 #game-container{
