@@ -22,29 +22,34 @@ const SNAKE = {
     }
 }
 
+BOARD_DATA = {
+    tileSize: 0,
+    width: 0,
+    height: 0,
+}
+
 //-------------------------------------Helper functions------------------------
 function checkIfEven(n){
     if (n % 2 !== 0) {return false;}
     else {return true;}
 }
 
-
 //-------------------------------------Game functions--------------------------
-function createBoard(width, height, tileSize){
+function createBoard(){
     const board = document.createElement("ul");
 
     let darkBg = false;
     let oposingColor = true;
     let bgColor = "#DFE6DA"; //board color as a placeholder
 
-    for (let j = 0; j < height; j++){    
+    for (let j = 0; j < BOARD_DATA.height; j++){    
         const rowTileList = document.createElement("li");
         
-        for (let i = 0; i < width; i++){
+        for (let i = 0; i < BOARD_DATA.width; i++){
             const tile = document.createElement("img");
             
-            tile.setAttribute("width", `${tileSize}px`);
-            tile.setAttribute("height", `${tileSize}px`);
+            tile.setAttribute("width", `${BOARD_DATA.tileSize}px`);
+            tile.setAttribute("height", `${BOARD_DATA.tileSize}px`);
             
             if (darkBg) {bgColor = "#819171";}
             else {bgColor = "#DFE6DA";}
@@ -68,15 +73,7 @@ function createBoard(width, height, tileSize){
     gameContainer.appendChild(board);
 }
 
-function positionSnake(boardWidth, boardHeight){
-
-}
-
-function changeSnakeDirection(direction){}
-
-function moveSnake(boardWidht, boardHeight){ return false;}
-
-function gameInit(gameScreenWidth, gameScreenHeight){
+function setTileSize(gameScreenWidth, gameScreenHeight){
     const width = Math.floor(gameScreenWidth);
     const height = Math.floor(gameScreenHeight);
 
@@ -87,11 +84,35 @@ function gameInit(gameScreenWidth, gameScreenHeight){
         biggestScreenSize = height;
     }
 
-    const tileSize = Math.floor(biggestScreenSize / 50);
-    const boardWidht = Math.floor(width / tileSize);
-    const boardHeight = Math.floor(height / tileSize);
-    
-    createBoard(boardWidht, boardHeight, tileSize);
-    positionSnake(boardWidht, boardHeight);
+    //Number 50 (itleNumber) is hard-coded, but should be changed 
+    //to give an option to the player regarding optimal boardSize
+    BOARD_DATA.tileSize = Math.floor(biggestScreenSize / 50);
+    BOARD_DATA.width = Math.floor(width / BOARD_DATA.tileSize);
+    BOARD_DATA.height = Math.floor(height / BOARD_DATA.tileSize);
 }
 
+function positionSnake(){
+
+}
+
+function changeSnakeDirection(direction){}
+
+function moveSnake(boardWidht, boardHeight){ return false;}
+
+function gameInit(gameScreenWidth, gameScreenHeight){
+    setTileSize(gameScreenWidth, gameScreenHeight);
+    createBoard();
+    positionSnake();
+}
+
+function resizeBoard(gameScreenWidth, gameScreenHeight){
+    setTileSize(gameScreenWidth, gameScreenHeight);
+    console.log(BOARD_DATA.tileSize)
+    for (let j = 0; j < BOARD_DATA.height; j++){
+        for (let i = 0; i < BOARD_DATA.width; i++){
+            const tile = document.querySelector(`#tile-${j}-${i}`);
+            tile.setAttribute("width", `${BOARD_DATA.tileSize}px`);
+            tile.setAttribute("height", `${BOARD_DATA.tileSize}px`);
+        }
+    }
+}

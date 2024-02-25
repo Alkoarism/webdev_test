@@ -3,10 +3,22 @@ const mainSection = document.querySelector("main");
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 
-//Real height and width values account for main tag border and margin
-const REAL_WIDTH = mainSection.offsetWidth - (2 * 0.01 * mainSection.offsetWidth);
-const REAL_HEIGHT = mainSection.offsetHeight - (2 * 0.03 * mainSection.offsetHeight);
-//-------------------------------------Page Functions--------------------------
+const width = document.querySelector("#height");
 
+//-------------------------------------Page Functions--------------------------
+//Real height and width values account for main tag border and margin
+const getRealWidth = () => {
+    return mainSection.offsetWidth - (2 * 0.01 * mainSection.offsetWidth);
+}
+
+const getRealHeight = () => {
+    return mainSection.offsetHeight - (2 * 0.03 * mainSection.offsetHeight);
+}
+
+const resizeObserver = new ResizeObserver((entry) => {
+    resizeBoard(getRealWidth(), getRealHeight());
+})
 //-------------------------------------Page Control----------------------------
-gameInit(REAL_WIDTH, REAL_HEIGHT);
+gameInit(getRealWidth(), getRealHeight());
+
+resizeObserver.observe(mainSection);
