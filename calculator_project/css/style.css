@@ -15,16 +15,16 @@ a{
 }
 
 /*flex containers*/
-header, section, body{
+header, body{
     display: flex;
 }
 
-section, body{
+body{
     flex-direction: column;
 }
 
 /* page border padding*/
-header, footer, section{
+header, footer{
     padding: 10px, 5%;
 }
 
@@ -57,19 +57,17 @@ header h1{
 }
 
 /*----------Main-----------------------------------*/
-section{
-    text-align: justify;
+/*section styling*/
+
+/*button interactions*/
+.calculator button:hover{
+    background-color: blue;
+    color: white;
 }
 
-section p{
-    margin: 10px 0px;
-    text-indent: 3%;
-}
+.numPad .one{
 
-section{
-    padding: 50px 5%;
 }
-
 /*----------Footer---------------------------------*/
 footer{
     text-align: center;
