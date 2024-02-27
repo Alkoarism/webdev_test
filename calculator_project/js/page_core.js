@@ -51,5 +51,7 @@ function updateDisplay(content){
             displayContent += content;
     }
 
+    displayMemoryOperation.textContent = memoryOperation;
+    displayMemoryNumber.textContent = memoryNumber;
     displayInput.textContent = displayContent;
 }

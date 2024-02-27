@@ -15,11 +15,11 @@ a{
 }
 
 /*flex containers*/
-header, .display .memory, body{
+header, section, body{
     display: flex;
 }
 
-body{
+body, .calculator, .display{
     flex-direction: column;
 }
 
@@ -58,6 +58,51 @@ header h1{
 
 /*----------Main-----------------------------------*/
 /*section styling*/
+section, .calculator button{
+    justify-content: space-around;
+    flex-grow: 1;
+    font-size: 175%;
+}
+
+.calculator{
+    margin: 1% 25%;
+    padding: 1%;
+    background-color:#1f458f;
+    border-radius: 5%;
+}
+
+.display, .calculator button{
+    border-radius: 10%;
+}
+
+.calculator *{
+    margin: 0.5% 1%;
+}
+
+.display{
+    background-color: #97ab76;
+    align-items: end;
+}
+
+.display *{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.display .memory{
+    flex-grow: .1;
+    font-size: 100%;
+    max-width: 25%;
+}
+
+.display .input{
+    font-size: 130%;
+}
+
+.display p{
+    min-height: 25%;
+}
 
 /*button interactions*/
 .calculator button:hover{
@@ -68,9 +113,6 @@ header h1{
 /*----------Footer---------------------------------*/
 footer{
     text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }
 
 footer p{
