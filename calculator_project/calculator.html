@@ -4,17 +4,21 @@
         <meta charset="utf-8">
         <title>Calculator</title>
         <link rel="stylesheet" href="css/style.css">
-        <script src="js/core.js" defer></script>
+        <script src="js/calculator_core.js" defer></script>
+        <script src="js/page_core.js" defer></script>
         <script src="js/visuals.js" defer></script>
-        <script src="js/page.js" defer></script>
     </head>
     <body>
         <header>
             <h1>Calculator Project</h1>
         </header>
-        <section class="calculator container">
-            <section class="display container">
-                <p class="display">4 + 3</p>
+        <section class="calculator">
+            <section class="display">
+                <section class="memory">
+                    <p class="number"></p>
+                    <p class="operation"></p>
+                </section>
+                <p class="input"></p>
             </section>
             <section class="numPad 123+">
                 <button class="one">1</button>

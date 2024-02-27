@@ -1,7 +1,7 @@
 //----------------- Constants -------------------------------------------------
-let displayContent = ""
-
-const display = document.querySelector(".display");
+const displayInput = document.querySelector(".input");
+const displayMemoryNumber = document.querySelector(".memory .number");
+const displayMemoryOperation = document.querySelector(".memory .operation");
 
 const button1 = document.querySelector(".numPad .one");
 const button2 = document.querySelector(".numPad .two");
@@ -22,21 +22,6 @@ const buttonClear = document.querySelector(".numPad .clear");
 const buttonClearEverything = document.querySelector(".numPad .clear-everything");
 
 //----------------- System related functions ----------------------------------
-function updateDisplay(content){
-    if (content!== "CE"){
-        if(content !== "C"){
-            displayContent += content;
-        } else{
-            console.log(content);
-            displayContent = displayContent.slice(0, (displayContent.length() - 1));
-        }
-    } else{
-        displayContent = "";
-    }
-
-    display.textContent = displayContent;
-}
-
 button1.onclick = () => {updateDisplay("1")}
 button2.onclick = () => {updateDisplay("2")}
 button3.onclick = () => {updateDisplay("3")}

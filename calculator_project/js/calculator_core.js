@@ -7,7 +7,7 @@ operations.set('*', multiply);
 operations.set('/', divide);
 
 //----------------- System related functions ----------------------------------
-function operationDecider(a, b, operator){
+function operate(a, b, operator){
     if (b === 0 && operator === "/"){
         return NaN;
     }
