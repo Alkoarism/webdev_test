@@ -1,0 +1,83 @@
+/*--------------------Pagewise-----------------------------------------------*/
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Times New Roman', sans-serif;
+    margin: 0px;
+    border: 0px;
+}
+
+body{
+    min-height: 100vh;
+}
+
+a{
+    text-decoration: none;
+}
+
+/*flex containers*/
+header, section, body{
+    display: flex;
+}
+
+section, body{
+    flex-direction: column;
+}
+
+/* page border padding*/
+header, footer, section{
+    padding: 10px, 5%;
+}
+
+/*standard font colors*/
+header, footer, footer a{
+    color: #DCDCDC;
+}
+
+header, footer{
+    background-color: #00216d;
+}
+
+/*standard font sizes and styles*/
+h1, h2{
+    font-style: italic;
+}
+
+/*----------Header---------------------------------*/
+header{
+    justify-content: center;
+    padding: 0px 10%;
+    position: sticky;
+    top: 0px;
+    box-shadow: 0px 5px 10px #5b61a1;
+}
+
+header h1{
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+/*----------Main-----------------------------------*/
+section{
+    text-align: justify;
+}
+
+section p{
+    margin: 10px 0px;
+    text-indent: 3%;
+}
+
+section{
+    padding: 50px 5%;
+}
+
+/*----------Footer---------------------------------*/
+footer{
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p{
+    padding-bottom: 5px;
+}
