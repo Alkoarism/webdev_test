@@ -47,7 +47,7 @@ buttonParenthesis.onclick = () => {
 
     if (displayOperation.textContent.length !== 0){
         const firstNbrChar = reversedOperation.search(/\d/g);
-        if (firstNbrChar !== -1 && firstNbrChar < reversedOperation.search(/[^\)|\d]/g)){
+        if (firstNbrChar !== -1 && firstNbrChar < reversedOperation.search(/[^\)|\d|\%]/g)){
             const leftParenthesisCnt = displayOperation.textContent.match(/\(/g)
             const rightParenthesisCnt = displayOperation.textContent.match(/\)/g) 
             if (rightParenthesisCnt === null || rightParenthesisCnt.length < leftParenthesisCnt.length){
@@ -62,7 +62,12 @@ buttonParenthesis.onclick = () => {
     }
 }
 
-buttonPercentage.onclick = () => {displayOperation.textContent += '%';}
+buttonPercentage.onclick = () => {
+    if (reversedOperation.search(/\d|\%|\)/) === 0){
+        displayOperation.textContent += '%';
+    }
+}
+
 buttonDivision.onclick = () => {displayOperation.textContent += '/';}
 buttonMultiplication.onclick = () => {displayOperation.textContent += 'x';}
 buttonMinus.onclick = () => {displayOperation.textContent += '-';}
