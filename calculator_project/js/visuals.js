@@ -2,6 +2,8 @@
 const displayOperation = document.querySelector(".display .operation");
 const displayResult = document.querySelector(".display .result");
 
+let reversedOperation = '';
+
 const button1 = document.querySelector(".numPad .one");
 const button2 = document.querySelector(".numPad .two");
 const button3 = document.querySelector(".numPad .three");
@@ -41,7 +43,23 @@ buttonClear.onclick = () => {
 }
 
 buttonParenthesis.onclick = () => {
+    let displayLeftParenthesis = true;
 
+    if (displayOperation.textContent.length !== 0){
+        const firstNbrChar = reversedOperation.search(/\d/g);
+        if (firstNbrChar !== -1 && firstNbrChar < reversedOperation.search(/[^\)|\d]/g)){
+            const leftParenthesisCnt = displayOperation.textContent.match(/\(/g)
+            const rightParenthesisCnt = displayOperation.textContent.match(/\)/g) 
+            if (rightParenthesisCnt === null || rightParenthesisCnt.length < leftParenthesisCnt.length){
+                displayOperation.textContent += '\)';
+                displayLeftParenthesis = false;
+            }
+        }
+    }
+
+    if (displayLeftParenthesis){
+        displayOperation.textContent += '\(';
+    }
 }
 
 buttonPercentage.onclick = () => {displayOperation.textContent += '%';}
@@ -58,9 +76,8 @@ buttonClearLast.onclick = () => {
 }
 
 buttonDot.onclick = () => {
-    const reversedDispOp = displayOperation.textContent.split("").reverse().join("");
-    if (reversedDispOp.search(/\./) === -1 || 
-        reversedDispOp.search(/\D/) < reversedDispOp.search(/\./)){
+    if (reversedOperation.search(/\./g) === -1 || 
+        reversedOperation.search(/\D/g) < reversedOperation.search(/\./g)){
             displayOperation.textContent += '.';
     }
 }
@@ -71,6 +88,7 @@ const displayOperationObserver = new MutationObserver(
     (mutationList, observer) => {
         for (const mutation of mutationList){
             if (mutation.type === 'childList'){
+                reversedOperation = displayOperation.textContent.split("").reverse().join("");
                 console.log("A child node had been added or removed");
             }
         }
