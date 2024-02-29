@@ -5,13 +5,12 @@ operations.set('+', add);
 operations.set('-', subtract);
 operations.set('*', multiply);
 operations.set('/', divide);
+operations.set('%', percentage);
+operations.set('+/-', negative);
 
 //----------------- System related functions ----------------------------------
-function operate(a, b, operator){
-    if (b === 0 && operator === "/"){
-        return NaN;
-    }
-    return operations.get(operator)(a,b)
+function solveEquation(equation){
+    
 }
 
 //----------------- Four function calculator functions ------------------------
@@ -28,5 +27,16 @@ function multiply(a, b){
 }
 
 function divide(a, b){
+    if (b === 0 && operator === "/"){
+        return NaN;
+    }
     return a / b;
+}
+
+function percentage(a){
+    return a / 100;
+}
+
+function negative(a){
+    return a * (-1);
 }

@@ -1,7 +1,6 @@
 //----------------- Constants -------------------------------------------------
-const displayInput = document.querySelector(".input");
-const displayMemoryNumber = document.querySelector(".memory .number");
-const displayMemoryOperation = document.querySelector(".memory .operation");
+const displayOperation = document.querySelector(".display .operation");
+const displayResult = document.querySelector(".display .result");
 
 const button1 = document.querySelector(".numPad .one");
 const button2 = document.querySelector(".numPad .two");
@@ -13,29 +12,67 @@ const button7 = document.querySelector(".numPad .seven");
 const button8 = document.querySelector(".numPad .eight");
 const button9 = document.querySelector(".numPad .nine");
 const button0 = document.querySelector(".numPad .zero");
-const buttonEqual = document.querySelector(".numPad .equal");
-const buttonPlus = document.querySelector(".numPad .plus");
-const buttonMinus = document.querySelector(".numPad .minus");
-const buttonMultiplication = document.querySelector(".numPad .multiplication");
-const buttonDivision = document.querySelector(".numPad .division");
-const buttonClear = document.querySelector(".numPad .clear");
-const buttonClearEverything = document.querySelector(".numPad .clear-everything");
+const buttonClear = document.querySelector('.numPad .clear');
+const buttonParenthesis = document.querySelector('.numPad .parenthesis');
+const buttonPercentage = document.querySelector('.numPad .percentage');
+const buttonDivision = document.querySelector('.numPad .division');
+const buttonMultiplication = document.querySelector('.numPad .multiplication');
+const buttonMinus = document.querySelector('.numPad .minus');
+const buttonPlus = document.querySelector('.numPad .plus');
+const buttonClearLast = document.querySelector('.numPad .clear-last');
+const buttonDot = document.querySelector('.numPad .dot');
+const buttonEqual = document.querySelector('.numPad .equal');
 
 //----------------- System related functions ----------------------------------
-button1.onclick = () => {updateDisplay("1")}
-button2.onclick = () => {updateDisplay("2")}
-button3.onclick = () => {updateDisplay("3")}
-button4.onclick = () => {updateDisplay("4")}
-button5.onclick = () => {updateDisplay("5")}
-button6.onclick = () => {updateDisplay("6")}
-button7.onclick = () => {updateDisplay("7")}
-button8.onclick = () => {updateDisplay("8")}
-button9.onclick = () => {updateDisplay("9")}
-button0.onclick = () => {updateDisplay("0")}
-buttonEqual.onclick = () => {updateDisplay("=")}
-buttonPlus.onclick = () => {updateDisplay("+")}
-buttonMinus.onclick = () => {updateDisplay("-")}
-buttonMultiplication.onclick = () => {updateDisplay("*")}
-buttonDivision.onclick = () => {updateDisplay("/")}
-buttonClear.onclick = () => {updateDisplay("C")}
-buttonClearEverything.onclick = () => {updateDisplay("CE")}
+button1.onclick = () => {displayOperation.textContent += '1';}
+button2.onclick = () => {displayOperation.textContent += '2';}
+button3.onclick = () => {displayOperation.textContent += '3';}
+button4.onclick = () => {displayOperation.textContent += '4';}
+button5.onclick = () => {displayOperation.textContent += '5';}
+button6.onclick = () => {displayOperation.textContent += '6';}
+button7.onclick = () => {displayOperation.textContent += '7';}
+button8.onclick = () => {displayOperation.textContent += '8';}
+button9.onclick = () => {displayOperation.textContent += '9';}
+button0.onclick = () => {displayOperation.textContent += '0';}
+
+buttonClear.onclick = () => {
+    displayOperation.textContent = '';
+    displayResult.textContent = '';
+}
+
+buttonParenthesis.onclick = () => {
+
+}
+
+buttonPercentage.onclick = () => {displayOperation.textContent += '%';}
+buttonDivision.onclick = () => {displayOperation.textContent += '/';}
+buttonMultiplication.onclick = () => {displayOperation.textContent += 'x';}
+buttonMinus.onclick = () => {displayOperation.textContent += '-';}
+buttonPlus.onclick = () => {displayOperation.textContent += '+';}
+
+buttonClearLast.onclick = () => {
+    if (displayOperation.textContent.length > 0){
+        displayOperation.textContent = 
+            displayOperation.textContent.slice(0, displayOperation.textContent.length - 1);
+    }
+}
+
+buttonDot.onclick = () => {
+    if (displayOperation.textContent.search(/\./) === -1){
+        displayOperation.textContent += '.';
+    }
+}
+
+buttonEqual.onclick = () => {updateDisplay("0")}
+
+const displayOperationObserver = new MutationObserver(
+    (mutationList, observer) => {
+        for (const mutation of mutationList){
+            if (mutation.type === 'childList'){
+                console.log("A child node had been added or removed");
+            }
+        }
+    }
+);
+
+displayOperationObserver.observe(displayOperation, {childList: true});
