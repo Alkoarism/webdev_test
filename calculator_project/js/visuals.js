@@ -58,8 +58,10 @@ buttonClearLast.onclick = () => {
 }
 
 buttonDot.onclick = () => {
-    if (displayOperation.textContent.search(/\./) === -1){
-        displayOperation.textContent += '.';
+    const reversedDispOp = displayOperation.textContent.split("").reverse().join("");
+    if (reversedDispOp.search(/\./) === -1 || 
+        reversedDispOp.search(/\D/) < reversedDispOp.search(/\./)){
+            displayOperation.textContent += '.';
     }
 }
 
