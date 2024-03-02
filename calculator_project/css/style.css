@@ -1,17 +1,10 @@
 /*--------------------Pagewise-----------------------------------------------*/
 *{
-    box-sizing: border-box;
-    font-family: 'Roboto', 'Times New Roman', sans-serif;
-    margin: 0px;
-    border: 0px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 body{
     min-height: 100vh;
-}
-
-a{
-    text-decoration: none;
 }
 
 /*flex containers*/

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Calculator</title>
+        <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/style.css">
         <script src="js/calculator_core.js" defer></script>
         <script src="js/page_core.js" defer></script>
@@ -14,6 +15,8 @@
         </header>
         <section class="calculator">
             <section class="display">
+                <button class="switch-mode"></button>
+                <p class="button-description">Switch to dark</p>
                 <p class="operation"></p>
                 <p class="result"></p>
             </section>
@@ -49,8 +52,8 @@
             </section>
         </section>
         <footer>
-            <P><a href="../index.html">Home</a></P>
-            <p><strong>Page ver.:</strong> 0.3
+            <P class="home-link"><a href="../index.html">Home</a></P>
+            <p class="version-odin"><strong>Page ver.:</strong> 0.3
                  | 
             Copyright © The Odin Project 2021</p>
         </footer>
