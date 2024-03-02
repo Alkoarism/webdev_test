@@ -13,44 +13,56 @@
         <header>
             <h1>Calculator Project</h1>
         </header>
-        <section class="calculator">
-            <section class="display">
-                <button class="switch-mode"></button>
-                <p class="button-description">Switch to dark</p>
-                <p class="operation"></p>
-                <p class="result"></p>
+        <main>
+            <section class="calculator">
+                <section class="display">
+                    <section class="switch-mode">
+                        <button class="switch-mode">
+                            <img class="mode-img">
+                        </button>
+                    <div class="container">
+                        <p class="button-description">Switch to light</p>
+                    </div>
+                    </section>
+                    <div class="container">
+                        <p class="operation">50+50</p>
+                    </div>
+                    <div class="container">
+                        <p class="result">100</p>
+                    </div>
+                </section>
+                <section class="numPad C()%/">
+                    <button class="clear top-color">C</button>
+                    <button class="parenthesis top-color">()</button>
+                    <button class="percentage top-color">%</button>
+                    <button class="division side-color">/</button>
+                </section>
+                <section class="numPad 789*">
+                    <button class="seven central-color">7</button>
+                    <button class="eight central-color">8</button>
+                    <button class="nine central-color">9</button>
+                    <button class="multiplication side-color">x</button>
+                </section>
+                <section class="numPad 456-">
+                    <button class="four central-color">4</button>
+                    <button class="five central-color">5</button>
+                    <button class="six central-color">6</button>
+                    <button class="minus side-color">-</button>
+                </section>
+                <section class="numPad 123+">
+                    <button class="one central-color">1</button>
+                    <button class="two central-color">2</button>
+                    <button class="three central-color">3</button>
+                    <button class="plus side-color">+</button>
+                </section>
+                <section class="numPad +/-0.=">
+                    <button class="clear-last central-color">&#60;X</button>
+                    <button class="zero central-color">0</button>
+                    <button class="dot central-color">.</button>
+                    <button class="equal">=</button>
+                </section>
             </section>
-            <section class="numPad C()%/">
-                <button class="clear">C</button>
-                <button class="parenthesis">()</button>
-                <button class="percentage">%</button>
-                <button class="division">/</button>
-            </section>
-            <section class="numPad 789*">
-                <button class="seven">7</button>
-                <button class="eight">8</button>
-                <button class="nine">9</button>
-                <button class="multiplication">x</button>
-            </section>
-            <section class="numPad 456-">
-                <button class="four">4</button>
-                <button class="five">5</button>
-                <button class="six">6</button>
-                <button class="minus">-</button>
-            </section>
-            <section class="numPad 123+">
-                <button class="one">1</button>
-                <button class="two">2</button>
-                <button class="three">3</button>
-                <button class="plus">+</button>
-            </section>
-            <section class="numPad +/-0.=">
-                <button class="clear-last">&#60;X</button>
-                <button class="zero">0</button>
-                <button class="dot">.</button>
-                <button class="equal">=</button>
-            </section>
-        </section>
+        </main>
         <footer>
             <P class="home-link"><a href="../index.html">Home</a></P>
             <p class="version-odin"><strong>Page ver.:</strong> 0.3

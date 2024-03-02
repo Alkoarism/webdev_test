@@ -8,11 +8,11 @@ body{
 }
 
 /*flex containers*/
-header, section, body{
+header, section, main, body{
     display: flex;
 }
 
-body, .calculator, .display{
+body, main, .calculator, .display{
     flex-direction: column;
 }
 
@@ -50,59 +50,95 @@ header h1{
 }
 
 /*----------Main-----------------------------------*/
-/*section styling*/
-section, .calculator button{
-    justify-content: space-around;
-    flex-grow: 1;
-    font-size: 175%;
-}
-
-.calculator{
-    margin: 1% 25%;
-    padding: 1%;
-    background-color:#1f458f;
-    border-radius: 5%;
-}
-
-.display, .calculator button{
-    border-radius: 10%;
-}
-
-.calculator *{
-    margin: 0.5% 1%;
-}
-
-.display{
-    background-color: #97ab76;
-    align-items: end;
-}
-
-.display *{
-    display: flex;
-    flex-grow: 1;
+main, .numPad{
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.display .memory{
-    flex-grow: .1;
-    font-size: 100%;
-    max-width: 25%;
+main, .calculator, .numPad{
+    flex-grow: 1;
 }
 
-.display .input{
-    font-size: 130%;
+.calculator{
+    height: 80vh;
+    padding-bottom: 1%;
+    margin: 1%;
+    width: 50vh;
+    background-color: #252628;
+    border-radius: 3%;
+    box-shadow: 0em 0em 1em #000000;
 }
 
-.display p{
-    min-height: 25%;
+.display{
+    min-height: 30%;
+    background-color: #1b1c1e;
+    margin-bottom: 2%;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom:solid #ffffff 0.5vh;
 }
 
-/*button interactions*/
-.calculator button:hover{
-    background-color: blue;
-    color: white;
+.display .switch-mode{
+    margin: 2%;
+    min-height: 10%;
 }
 
+.operation, .button-description{
+    color: #7b7670;
+}
+
+.display .container{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    min-height: 40%;
+}
+
+.operation, .result{
+    margin: 0 5%;
+    text-align: right;
+}
+
+.operation{
+    font-size: 5vh;
+}
+
+.result{
+    font-size: 8vh;
+}
+
+.numPad button, .result{
+    color: #ffffff;
+}
+
+.numPad{
+    margin: 1.5%;
+}
+
+.numPad button{
+    font-size: 2em;
+    height: 100%;
+    width: 25%;
+    border-radius: 15%;
+    margin: 1.5%;
+}
+
+/*Button Coloring*/
+.top-color{
+    background-color: #847D6A;
+}
+
+.side-color{
+    background-color: #f1af60;
+}
+
+.central-color{
+    background-color: #533d28
+}
+
+.equal{
+    background: linear-gradient(#f19710, #fedd70);
+}
 /*----------Footer---------------------------------*/
 footer{
     text-align: center;
