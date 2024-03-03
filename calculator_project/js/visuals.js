@@ -87,14 +87,17 @@ buttonDot.onclick = () => {
     }
 }
 
-buttonEqual.onclick = () => {updateDisplay("0")}
+buttonEqual.onclick = () => {
+    displayOperation.textContent = displayResult.textContent;
+    displayResult.textContent = '';
+}
 
 const displayOperationObserver = new MutationObserver(
     (mutationList, observer) => {
         for (const mutation of mutationList){
             if (mutation.type === 'childList'){
                 reversedOperation = displayOperation.textContent.split("").reverse().join("");
-                console.log("A child node had been added or removed");
+                displayResult.textContent = resolve(displayOperation.textContent);
             }
         }
     }
