@@ -16,7 +16,7 @@ RESULT = {
 //----------------- System related functions ----------------------------------
 function resolve(text){
     if (text === ''){RESULT.solved = false;}
-    else {RESULT.value = solveOperation(text);}
+    else {RESULT.value = solveEquation(text);}
 
     if (RESULT.solved){
         return RESULT.value;
@@ -26,12 +26,24 @@ function resolve(text){
     }
 }
 
-function solveParenthesis(parenthesized){
+function solveEquation(equation){
+    if (equation.search(/\(/) !== -1) { console.log(solveParenthesis(equation));}
+    else {solveOperation(equation);}
+}
 
+function solveParenthesis(parenthesized){
+    const whatever = parenthesized.split(')')
+        .filter((element) => element.length > 0) //Garble cleaning sppitted from split
+        .map((subEquation) => subEquation.split('(')
+            .filter((element) => element.length > 0));
+    
+    let resolved = [];
+    whatever.forEach((element) => element.map((subElement) => resolved.push(subElement)));
+
+    return resolved;
 }
 
 function solveOperation(operation){
-    if (operation.search(/\(/) !== -1) { return solveParenthesis(operation);}
 
     const operatorPos = operation.search(/\x|\/|\+|\-|\%/);
     if (operatorPos === -1){return parseFloat(operation);}
@@ -41,7 +53,7 @@ function solveOperation(operation){
             0, 
             operation[operatorPos]);
     }
-    if (operatorPos === operation.length - 1){return '';}
+    if (operatorPos === operation.length - 1 || operatorPos === 0){return '';}
     if (operation[operatorPos] === '/' && parseFloat(operation.slice(operatorPos + 1)) === 0){
         RESULT.error = 'DIVISION BY 0';
         RESULT.solved = false;
