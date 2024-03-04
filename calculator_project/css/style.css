@@ -98,11 +98,11 @@ main, .calculator, .numPad{
 }
 
 .operation{
-    font-size: 5vh;
+    font-size: 6vh;
 }
 
 .result{
-    font-size: 8vh;
+    font-size: 4vh;
 }
 
 /*numPad specifics*/
