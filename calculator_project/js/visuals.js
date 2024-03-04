@@ -50,9 +50,11 @@ buttonParenthesis.onclick = () => {
         if (firstNbrChar !== -1 && firstNbrChar < reversedOperation.search(/[^\)|\d|\%]/g)){
             const leftParenthesisCnt = displayOperation.textContent.match(/\(/g)
             const rightParenthesisCnt = displayOperation.textContent.match(/\)/g) 
-            if (rightParenthesisCnt === null || rightParenthesisCnt.length < leftParenthesisCnt.length){
-                displayOperation.textContent += '\)';
-                displayLeftParenthesis = false;
+            if (leftParenthesisCnt !== null){
+                if (rightParenthesisCnt === null || rightParenthesisCnt.length < leftParenthesisCnt.length){
+                    displayOperation.textContent += '\)';
+                    displayLeftParenthesis = false;
+                }
             }
         }
     }

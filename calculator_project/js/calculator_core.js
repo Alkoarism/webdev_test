@@ -24,49 +24,21 @@ function resolve(text){
         return RESULT.error;
 }
 
-function solveEquation(equationText){
-    console.log(equationText, typeof(equationText));
-    let leftSide = '';
-    let operationPos = equationText.search(/\%|\+|\-/);
-    console.log(operationPos);
-    let rightSide = '';
+function solveEquation(input){
+    if (input.search(/\(/) !== -1) { return solveParenthesis(input);}
 
-    if (operationPos !== -1){
-        if (equationText[operationPos] === '%'){
-            return operations.get(operation)(solveEquation(leftSide));
-        }
-    
-        if (equationText[operationPos] === '+' || equationText[operationPos] === '-'){
-            leftSide = equationText.split(0, operationPos);
-            rightSide = equationText.split(operationPos);
-            
-            leftSide = solveEquation(leftSide);
-            rightSide = solveEquation(rightSide);
-            return operations.get
-                (equationText[operationPos])
-                (parseFloat(leftSide), parseFloat(rightSide));
-        }
-    }
-    
-    operationPos = equationText.search(/\x|\//);
-    console.log(operationPos);
-    if (operationPos !== -1){
-        leftSide = equationText.split(0, operationPos);
-        rightSide = equationText.split(operationPos);
 
-        return operations.get
-            (equationText[operationPos])
-            (parseFloat(leftSide), parseFloat(rightSide));
-    }
-
-    console.log(parseInt(equationText), equationText);
-    if (equationText.search(/\./) !== -1) return parseFloat(equationText);
-    else return parseInt(equationText);
 }
 
 function solveParenthesis(parenthesized){
     
 }
+
+function solveOperation(a, b, operator){
+    if (operator === '%'){ return operations.get(operator)(a);}
+    else {return operations.get(operator)(a, b);}
+}
+
 
 //----------------- Four calculator -------------------------------------------
 function add(a, b){
