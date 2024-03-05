@@ -27,48 +27,74 @@ function resolve(text){
 }
 
 function solveEquation(equation){
-    if (equation.search(/\(/) !== -1) { console.log(solveParenthesis(equation));}
-    else {return solveOperation(equation);}
+    console.log(solveParenthesis(equation));
+    if (equation.split("").reverse().join("").search(/\+|\-|\x|\/|\./g) !== 0){
+        return solveOperation(equation);
+    } else{
+        RESULT.error = 'INVALID';
+        RESULT.solved = false;
+        return 0;
+    }
 }
 
 function solveParenthesis(parenthesized){
-    const whatever = parenthesized.split(')')
+    const operations = parenthesized.split(')')
         .filter((element) => element.length > 0) //Garble cleaning sppitted from split
         .map((subEquation) => subEquation.split('(')
             .filter((element) => element.length > 0));
     
     let resolved = [];
-    whatever.forEach((element) => element.map((subElement) => resolved.push(subElement)));
+    operations.forEach((element) => element.map((subElement) => resolved.push(subElement)));
 
     return resolved;
 }
 
 function solveOperation(operation){
-
-    let operatorPos = operation.search(/\x|\/|\+|\-|\%/);
-    if (operation[0] === '-' && operation.length > 1){
-        operatorPos = operation.slice(1).search(/\x|\/|\+|\-|\%/);
-        if (operatorPos !== -1){operatorPos += 1;}
+    const negativeCheck = operation[0] === '-'? true : false;
+    const orderOfOperations = [/\+|\-/g, /\x|\//g, /\%/g]
+    let operatorPos = -1;
+    
+    const checkForValidity = () => {
+        return operatorPos === -1 || (operatorPos === 0 && negativeCheck)
+    };
+    const checkOperator = () => {return operation[operatorPos];}
+    
+    orderOfOperations.forEach((op) => {
+        if (checkForValidity()){
+            if (negativeCheck){
+                operatorPos = operation.slice(1).search(op) + 1;
+            }
+            else {operatorPos = operation.search(op);}
+            
+            if (checkOperator() === '-'){
+                if (operation.search(/\x|\//g) !== -1){operatorPos = -1;}
+            }
+        }
+    });
+    
+    console.log(operatorPos, operation);
+    if (checkForValidity()) {
+        return parseFloat(operation);
     }
-    if (operation[operation.length - 1] === '.'){return '';}
-    if (operatorPos === -1){return parseFloat(operation);}
-    if (operation[operatorPos] === '%'){
+    
+    if (checkOperator() === '%'){
         return operate(
-            operation.slice(0, operatorPos), 
+            parseFloat(operation.slice(0, operatorPos)), 
             0, 
-            operation[operatorPos]);
+            checkOperator());
     }
-    if (operatorPos === operation.length - 1 || operatorPos === 0){ return '';}
-    if (operation[operatorPos] === '/' && parseFloat(operation.slice(operatorPos + 1)) === 0){
-        RESULT.error = 'DIVISION BY 0';
-        RESULT.solved = false;
-        return 0;
+
+    if (checkOperator() === '-'){
+        return operate(
+            solveOperation(operation.slice(0, operatorPos)), 
+            solveOperation(operation.slice(operatorPos)),
+            '+');
     }
 
     return operate(
-        parseFloat(operation.slice(0, operatorPos)),
-        parseFloat(operation.slice(operatorPos + 1)),
-        operation[operatorPos]);
+        solveOperation(operation.slice(0, operatorPos)), 
+        solveOperation(operation.slice(operatorPos + 1)),
+        checkOperator());
 }
 
 function operate(a, b, operator){
