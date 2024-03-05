@@ -28,7 +28,7 @@ function resolve(text){
 
 function solveEquation(equation){
     if (equation.search(/\(/) !== -1) { console.log(solveParenthesis(equation));}
-    else {solveOperation(equation);}
+    else {return solveOperation(equation);}
 }
 
 function solveParenthesis(parenthesized){
@@ -45,7 +45,12 @@ function solveParenthesis(parenthesized){
 
 function solveOperation(operation){
 
-    const operatorPos = operation.search(/\x|\/|\+|\-|\%/);
+    let operatorPos = operation.search(/\x|\/|\+|\-|\%/);
+    if (operation[0] === '-' && operation.length > 1){
+        operatorPos = operation.slice(1).search(/\x|\/|\+|\-|\%/);
+        if (operatorPos !== -1){operatorPos += 1;}
+    }
+    if (operation[operation.length - 1] === '.'){return '';}
     if (operatorPos === -1){return parseFloat(operation);}
     if (operation[operatorPos] === '%'){
         return operate(
@@ -53,7 +58,7 @@ function solveOperation(operation){
             0, 
             operation[operatorPos]);
     }
-    if (operatorPos === operation.length - 1 || operatorPos === 0){return '';}
+    if (operatorPos === operation.length - 1 || operatorPos === 0){ return '';}
     if (operation[operatorPos] === '/' && parseFloat(operation.slice(operatorPos + 1)) === 0){
         RESULT.error = 'DIVISION BY 0';
         RESULT.solved = false;
