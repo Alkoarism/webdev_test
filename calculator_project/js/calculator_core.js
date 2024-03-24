@@ -7,6 +7,20 @@ operations.set('x', multiply);
 operations.set('/', divide);
 operations.set('%', percentage);
 
+const equation = {
+    operations: [],
+    numberOfOperations: function () {return this.operations.length;},
+    addOperation: function () {
+        this.operations.push(['', '']);
+    },
+    removeLastOperation: function () {
+        this.operations.pop();
+    }
+}
+
+const EQUATION = Object.create(equation);
+EQUATION.addOperation();
+
 RESULT = {
     solved: true,
     value: '',
@@ -27,7 +41,7 @@ function resolve(text){
 }
 
 function solveEquation(equation){
-    console.log(solveParenthesis(equation));
+//    console.log(solveParenthesis(equation));
     if (equation.split("").reverse().join("").search(/\+|\-|\x|\/|\./g) !== 0){
         return solveOperation(equation);
     } else{
