@@ -46,6 +46,7 @@ function solveParenthesis(parenthesized){
     let resolved = [];
     operations.forEach((element) => element.map((subElement) => resolved.push(subElement)));
 
+    console.log(operations, resolved)
     return resolved;
 }
 
@@ -72,7 +73,6 @@ function solveOperation(operation){
         }
     });
     
-    console.log(operatorPos, operation);
     if (checkForValidity()) {
         return parseFloat(operation);
     }
