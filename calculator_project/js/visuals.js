@@ -25,27 +25,27 @@ const buttonEqual = document.querySelector('.numPad .equal');
 
 //----------------- Button Control functions ----------------------------------
 
-button1.onclick = () => {addElement('1');}
-button2.onclick = () => {addElement('2');}
-button3.onclick = () => {addElement('3');}
-button4.onclick = () => {addElement('4');}
-button5.onclick = () => {addElement('5');}
-button6.onclick = () => {addElement('6');}
-button7.onclick = () => {addElement('7');}
-button8.onclick = () => {addElement('8');}
-button9.onclick = () => {addElement('9');}
-button0.onclick = () => {addElement('0');}
+button1.onclick = () => {addNumber('1');}
+button2.onclick = () => {addNumber('2');}
+button3.onclick = () => {addNumber('3');}
+button4.onclick = () => {addNumber('4');}
+button5.onclick = () => {addNumber('5');}
+button6.onclick = () => {addNumber('6');}
+button7.onclick = () => {addNumber('7');}
+button8.onclick = () => {addNumber('8');}
+button9.onclick = () => {addNumber('9');}
+button0.onclick = () => {addNumber('0');}
 
-buttonParenthesis.onclick = () => {addElement('(');}
-buttonPercentage.onclick = () => {addElement('%');}
-buttonDivision.onclick = () => {addElement('\/');}
-buttonMultiplication.onclick = () => {addElement('x');}
-buttonMinus.onclick = () => {addElement('-');}
-buttonPlus.onclick = () => {addElement('+');}
-buttonDot.onclick = () => {addElement('.');}
+buttonParenthesis.onclick = () => {addOperation('(');}
+buttonPercentage.onclick = () => {addOperation('%');}
+buttonDivision.onclick = () => {addOperation('\/');}
+buttonMultiplication.onclick = () => {addOperation('x');}
+buttonMinus.onclick = () => {addOperation('-');}
+buttonPlus.onclick = () => {addOperation('+');}
+buttonDot.onclick = () => {addOperation('.');}
 
 buttonClearLast.onclick = () => {removeLastElement();}
-buttonClear.onclick = () => {resetEquation();}
+buttonClear.onclick = () => {resetOperation();}
 buttonEqual.onclick = () => {
     displayOperation.textContent = displayResult.textContent;
     displayResult.textContent = '';

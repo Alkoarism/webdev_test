@@ -8,121 +8,73 @@ operations.set('/', divide);
 operations.set('%', percentage);
 
 const equation = {
-    operations: [],
-    numberOfOperations: function () {return this.operations.length;},
-    addOperation: function () {
-        this.operations.push(['', '']);
+    terms: [],
+    numberOfTerms: function () {return this.terms.length;},
+    addTerm: function (index = -1, term = 0, negation = false) {
+        if (index > 0) this.terms.slice(index, 0, [term, '', negation, false]);
+        else this.terms.push([term, '', negation, false]);
     },
-    removeLastOperation: function () {
-        this.operations.pop();
-    }
+    addEquation: function (index = -1) {
+        if (index > 0) this.terms.slice(index, 0, [Object.create(equation), '', false, true]);
+        else this.terms.push([Object.create(equation), '', false, true]);
+    },
+    removeTerm: function (index = this.numberOfTerms() - 1) {
+        if (index < this.numberOfTerms()){
+            this.terms.slice(index, 1)
+        } else {
+            console.log('ERROR:Out_of_Range');
+        }
+    },
+    clear: function () { this.terms.clear(); },
 }
 
-const EQUATION = Object.create(equation);
-EQUATION.addOperation();
-
-RESULT = {
-    solved: true,
-    value: '',
+const operationResult = {
+    value: 0,
     error: '',
 }
 
 //----------------- System related functions ----------------------------------
 function resolve(text){
-    if (text === ''){RESULT.solved = false;}
-    else {RESULT.value = solveEquation(text);}
-
-    if (RESULT.solved){
-        return RESULT.value;
-    } else{
-        RESULT.solved = true;
-        return RESULT.error;
-    }
 }
 
 function solveEquation(equation){
-//    console.log(solveParenthesis(equation));
-    if (equation.split("").reverse().join("").search(/\+|\-|\x|\/|\./g) !== 0){
-        return solveOperation(equation);
-    } else{
-        RESULT.error = 'INVALID';
-        RESULT.solved = false;
-        return 0;
+    result = new Object(operationResult);
+    result.error = 'ERROR:Not_Solved';
+
+    if (equation.numberOfTerms() === 0){
+        result.error = 'ERROR:No_Equation_To_Solve';
+        return result;
     }
-}
 
-function solveParenthesis(parenthesized){
-    const operations = parenthesized.split(')')
-        .filter((element) => element.length > 0) //Garble cleaning sppitted from split
-        .map((subEquation) => subEquation.split('(')
-            .filter((element) => element.length > 0));
-    
-    let resolved = [];
-    operations.forEach((element) => element.map((subElement) => resolved.push(subElement)));
+    if (equation.numberOfTerms() === 1){
+        if (equation.terms[0][2]) {
+            result.value = equation.terms[0][1];
+        } else {
+            result.value = -equation.terms[0][0];
+        }
+        result.error = '';
+        return result;
+    }
 
-    console.log(operations, resolved)
-    return resolved;
+    while (result.error !== ''){
+    }
 }
 
 function solveOperation(operation){
-    const negativeCheck = operation[0] === '-'? true : false;
-    const orderOfOperations = [/\+|\-/g, /\x|\//g, /\%/g]
-    let operatorPos = -1;
-    
-    const checkForValidity = () => {
-        return operatorPos === -1 || (operatorPos === 0 && negativeCheck)
-    };
-    const checkOperator = () => {return operation[operatorPos];}
-    
-    orderOfOperations.forEach((op) => {
-        if (checkForValidity()){
-            if (negativeCheck){
-                operatorPos = operation.slice(1).search(op) + 1;
-            }
-            else {operatorPos = operation.search(op);}
-            
-            if (checkOperator() === '-'){
-                if (operation.search(/\x|\//g) !== -1){operatorPos = -1;}
-            }
-        }
-    });
-    
-    if (checkForValidity()) {
-        return parseFloat(operation);
-    }
-    
-    if (checkOperator() === '%'){
-        return operate(
-            parseFloat(operation.slice(0, operatorPos)), 
-            0, 
-            checkOperator());
-    }
-
-    if (checkOperator() === '-'){
-        return operate(
-            solveOperation(operation.slice(0, operatorPos)), 
-            solveOperation(operation.slice(operatorPos)),
-            '+');
-    }
-
-    return operate(
-        solveOperation(operation.slice(0, operatorPos)), 
-        solveOperation(operation.slice(operatorPos + 1)),
-        checkOperator());
-}
-
-function operate(a, b, operator){
-    if (operator === '%'){ return operations.get(operator)(a);}
-    else {return operations.get(operator)(a, b);}
 }
 
 //----------------- Operations ------------------------------------------------
+function operate(a, b, operator){
+    return operations.get(operator)(a, b);
+}
+
 function add(a, b){
     return a + b;
 }
 
 function subtract(a, b){
-    return a - b;
+    if (a < 0 && b < 0) return a + b;
+    else return a - b;
 }
 
 function multiply(a, b){
@@ -130,12 +82,9 @@ function multiply(a, b){
 }
 
 function divide(a, b){
-    if (b === 0 && operator === "/"){
-        return NaN;
-    }
     return a / b;
 }
 
-function percentage(a){
-    return a / 100;
+function percentage(a, b){
+    return (a / 100) * b;
 }
