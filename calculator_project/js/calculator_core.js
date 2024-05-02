@@ -10,22 +10,46 @@ operations.set('%', percentage);
 const equation = {
     terms: [],
     numberOfTerms: function () {return this.terms.length;},
-    addTerm: function (index = -1, term = 0, negation = false) {
-        if (index > 0) this.terms.slice(index, 0, [term, '', negation, false]);
-        else this.terms.push([term, '', negation, false]);
+    addTerm: function (term = 0, index = -1) {
+        let unsignedTerm = term;
+        let negation = false;
+        if (term < 0){
+            negation = true;
+            unsignedTerm = -term;
+        }
+        if (index >= 0) this.terms.splice(index, 0, [unsignedTerm, '', negation, false]);
+        else this.terms.push([unsignedTerm, '', negation, false]);
     },
     addEquation: function (index = -1) {
-        if (index > 0) this.terms.slice(index, 0, [Object.create(equation), '', false, true]);
+        if (index >= 0) this.terms.splice(index, 0, [Object.create(equation), '', false, true]);
         else this.terms.push([Object.create(equation), '', false, true]);
     },
-    removeTerm: function (index = this.numberOfTerms() - 1) {
-        if (index < this.numberOfTerms()){
-            this.terms.slice(index, 1)
-        } else {
-            console.log('ERROR:Out_of_Range');
+    modifyTerm: function (term, index = this.numberOfTerms() - 1){
+        let value = this.terms[index][3]? -term: term;
+        if (value < 0){
+            this.terms[index][0] = -value;
+            this.terms[index][2] = true;
+        } else{
+            this.terms[index][0] = value;
+            this.terms[index][2] = false;
         }
     },
-    clear: function () { this.terms.clear(); },
+    removeTerm: function (index = this.numberOfTerms() - 1) {
+        if (index < this.numberOfTerms() && index >= 0){
+            this.terms.splice(index, 1)
+        } else {
+            return 'ERROR:Out_of_Range';
+        }
+    },
+    getTerm: function (index = this.numberOfTerms() - 1) {
+        if (this.terms[index][3]) return NaN;
+        if (this.terms[index][2]) {
+            return -this.terms[index][0];
+        } else {
+            return this.terms[index][0];
+        }
+    },
+    clear: function () { this.terms = []; },
 }
 
 const operationResult = {
@@ -38,7 +62,7 @@ function resolve(text){
 }
 
 function solveEquation(equation){
-    result = new Object(operationResult);
+    let result = new Object(operationResult);
     result.error = 'ERROR:Not_Solved';
 
     if (equation.numberOfTerms() === 0){
@@ -46,21 +70,49 @@ function solveEquation(equation){
         return result;
     }
 
-    if (equation.numberOfTerms() === 1){
-        if (equation.terms[0][2]) {
-            result.value = equation.terms[0][1];
+    //On a equation, we must solve all parenthesis and multiplication first,
+    //Thus, there are two loops: one for the above and another for sums and subtractions
+    let cnt = 0;
+    while (cnt < equation.numberOfTerms() - 1){
+        if (equation.terms[cnt][1].match(/\x|\/|\%/) !== -1){
+            solveOperation(equation, cnt);
         } else {
-            result.value = -equation.terms[0][0];
+            cnt += 1;
         }
+    }
+    
+    cnt = 0;
+    while (cnt < equation.numberOfTerms() - 1){
+        solveOperation(equation,cnt);
+    }
+
+    if (equation.numberOfTerms() === 1){
+        result.value = equation.getTerm();
         result.error = '';
         return result;
     }
-
-    while (result.error !== ''){
-    }
 }
 
-function solveOperation(operation){
+function solveOperation(equation, index){
+    let value = 0;
+    if (equation[index][3]){
+        let operation = equation.terms[index][1];
+        if (equation.terms[index][2]){
+            value = -solveEquation(equation.terms[index][0]);
+        } else {
+            value = solveEquation(equation.terms[index][0]);
+        }
+        equation.removeTerm(index);
+        equation.addTerm(value, index);
+        equation.terms[index][1] = operation;
+    } else{
+        value = operate(
+            equation.getTerm(index),
+            equation.getTerm(index + 1),
+            equation.terms[index][1])
+        equation.removeTerm(index);
+        equation.modifyTerm(value, index);
+    }
 }
 
 //----------------- Operations ------------------------------------------------
@@ -73,8 +125,7 @@ function add(a, b){
 }
 
 function subtract(a, b){
-    if (a < 0 && b < 0) return a + b;
-    else return a - b;
+    return a - b;
 }
 
 function multiply(a, b){

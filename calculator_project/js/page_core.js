@@ -1,8 +1,12 @@
 //----------------- Constants -------------------------------------------------
 const EQUATION = Object.create(equation);
-EQUATION.addOperation();
 
-RESULT = Object.create(operationResult);
+const RESULT = Object.create(operationResult);
+
+EQUATION.addTerm(45);
+EQUATION.addTerm(-28);
+EQUATION.addTerm(-15);
+console.log(EQUATION.terms);
 
 //----------------- Interface functions ---------------------------------------
 resetOperation = () => {
