@@ -10,19 +10,19 @@ operations.set('%', percentage);
 const equation = {
     terms: [],
     numberOfTerms: function () {return this.terms.length;},
-    addTerm: function (term = 0, index = -1) {
+    addTerm: function (term = 0, operation = '+', index = -1) {
         let unsignedTerm = term;
         let negation = false;
         if (term < 0){
             negation = true;
             unsignedTerm = -term;
         }
-        if (index >= 0) this.terms.splice(index, 0, [unsignedTerm, '', negation, false]);
-        else this.terms.push([unsignedTerm, '', negation, false]);
+        if (index >= 0) this.terms.splice(index, 0, [unsignedTerm, operation, negation, false]);
+        else this.terms.push([unsignedTerm, operation, negation, false]);
     },
-    addEquation: function (index = -1) {
-        if (index >= 0) this.terms.splice(index, 0, [Object.create(equation), '', false, true]);
-        else this.terms.push([Object.create(equation), '', false, true]);
+    addParethesis: function (term = 0, operation = '+', index = -1) {
+        if (index >= 0) this.terms.splice(index, 0, [Object.create(equation), operation, false, true]);
+        else this.terms.push([Object.create(equation), operation, false, true]);
     },
     modifyTerm: function (term, index = this.numberOfTerms() - 1){
         let value = this.terms[index][3]? -term: term;
@@ -74,7 +74,7 @@ function solveEquation(equation){
     //Thus, there are two loops: one for the above and another for sums and subtractions
     let cnt = 0;
     while (cnt < equation.numberOfTerms() - 1){
-        if (equation.terms[cnt][1].match(/\x|\/|\%/) !== -1){
+        if (equation.terms[cnt][1].match(/\x|\/|\%/g)){
             solveOperation(equation, cnt);
         } else {
             cnt += 1;
@@ -95,7 +95,7 @@ function solveEquation(equation){
 
 function solveOperation(equation, index){
     let value = 0;
-    if (equation[index][3]){
+    if (equation.terms[index][3]){
         let operation = equation.terms[index][1];
         if (equation.terms[index][2]){
             value = -solveEquation(equation.terms[index][0]);
