@@ -11,7 +11,7 @@ const equation = {
     terms: [],
 
     numberOfTerms: function () {return this.terms.length;},
-    addTerm: function (term = 0, operation = '+', priority = 0, index = -1) {
+    addTerm: function (term = 0, operation = '+', index = -1) {
         let unsignedTerm = term;
         let negation = false;
         if (term < 0){
@@ -21,8 +21,7 @@ const equation = {
         if (index >= 0) this.terms.splice(index, 0, [unsignedTerm, operation, negation]);
         else this.terms.push([unsignedTerm, operation, negation]);
     },
-    modifyTerm: function (term, index = this.numberOfTerms() - 1){
-        let value = this.terms[index][3]? -term: term;
+    modifyTerm: function (value, index = this.numberOfTerms() - 1){
         if (value < 0){
             this.terms[index][0] = -value;
             this.terms[index][2] = true;
@@ -30,6 +29,9 @@ const equation = {
             this.terms[index][0] = value;
             this.terms[index][2] = false;
         }
+    },
+    modifyOperation: function (operation, index = this.numberOfTerms() - 1){
+        this.terms[index][1] = operation;
     },
     removeTerm: function (index = this.numberOfTerms() - 1) {
         if (index < this.numberOfTerms() && index >= 0){
@@ -44,6 +46,9 @@ const equation = {
         } else {
             return this.terms[index][0];
         }
+    },
+    getOperation: function (index = this.numberOfTerms() - 1){
+        return this.terms[index][1];
     },
     clear: function () { 
         this.terms = [];
@@ -84,11 +89,11 @@ function solveEquation(equation){
         solveOperation(equation,cnt);
     }
 
-    if (equation.numberOfTerms() === 1){
-        result.value = equation.getTerm();
-        result.error = '';
-        return result;
-    }
+    result.value = equation.getTerm();
+    result.error = '';
+    equation.removeTerm();
+    equation.addTerm();
+    return result;
 }
 
 function solveOperation(equation, index){
