@@ -4,12 +4,18 @@ EQUATION.addTerm();
 
 const RESULT = Object.create(operationResult);
 
-let lastAction = 'addNumber';
+let lastAction = 'resetOperation';
 
-//----------------- Interface functions ---------------------------------------
+//----------------- Helper Functions ------------------------------------------
+//for some purposes 0 can´t be considered a valid number (such as - sign handling)
+checkIfNumberOnTerm = () => {
+    return !EQUATION.getTerm().toString().search(/\d/g) || EQUATION.getTerm() === 0;
+}
+
+//----------------- Interface Functions ---------------------------------------
 updateDisplay = () => {
     let eq = '';
-    if (lastAction === 'addNumber'){
+    if (lastAction === 'addNumber' || lastAction === 'addMinusSign'){
         eq = EQUATION.getTerm(0);
         for (i = 1; i < EQUATION.numberOfTerms(); i++){
             eq += EQUATION.getOperation(i - 1) + EQUATION.getTerm(i);
@@ -19,12 +25,22 @@ updateDisplay = () => {
             eq += EQUATION.getTerm(i) + EQUATION.getOperation(i);
         }
     }
-    displayOperation.textContent = eq;
+    if (checkIfNumberOnTerm() && EQUATION.isNegative()){
+        eq += '-';
+    }
+
+    let output = '';
+    if (typeof(eq) === typeof(0)) output = eq.toString().replaceAll('+-', '-');
+    else output = eq.replaceAll('+-', '-');
+    displayOperation.textContent = output;
 }
 
 addNumber = (number) => {
     let term = '';
     term = EQUATION.getTerm() + number;
+    if (checkIfNumberOnTerm() && EQUATION.isNegative()){
+        term = '-' + term;
+    }
     EQUATION.modifyTerm(parseFloat(term));
     lastAction = 'addNumber';
     updateDisplay();
@@ -41,24 +57,40 @@ addOperation = (operation) => {
     updateDisplay();
 }
 
+addMinusSign = () => {
+    if (lastAction === 'addNumber') addOperation('+');
+    if (lastAction !== 'addNumber' && checkIfNumberOnTerm()){
+        EQUATION.flipSign();
+        lastAction === 'addNumber';
+        updateDisplay();
+    }
+}
+
 removeLastElement = () => {
+    let isNegative = EQUATION.isNegative();
     if (lastAction === 'addNumber'){
         let term = '';
         term = EQUATION.getTerm().toString().slice(0, -1);
 
-        if (term === '') {
-            if (EQUATION.numberOfTerms() !== 1) lastAction = 'addOperation';
-            else {
+        if (term.search(/\d/g) === -1) {
+            if (EQUATION.numberOfTerms() === 1){
                 lastAction = 'resetOperation';
+            } else {
+                lastAction = 'addOperation';
             }
             EQUATION.removeTerm();
             EQUATION.addTerm();
+            if (isNegative) EQUATION.flipSign();
         }
         else EQUATION.modifyTerm(parseFloat(term));
     
     } else if (lastAction === 'addOperation'){
-        EQUATION.removeTerm();
-        lastAction = 'addNumber';
+        if (EQUATION.getOperation(EQUATION.numberOfTerms() - 2) !== '+' && isNegative){
+            EQUATION.flipSign();
+        } else{
+            EQUATION.removeTerm();
+            lastAction = 'addNumber';
+        }
     }
     updateDisplay();
 }

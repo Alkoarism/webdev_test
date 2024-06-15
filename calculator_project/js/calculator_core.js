@@ -33,6 +33,10 @@ const equation = {
     modifyOperation: function (operation, index = this.numberOfTerms() - 1){
         this.terms[index][1] = operation;
     },
+    flipSign: function (index = this.numberOfTerms() - 1) {
+        this.terms[index][2] = !this.terms[index][2];
+        return this.terms[index][2];
+    },
     removeTerm: function (index = this.numberOfTerms() - 1) {
         if (index < this.numberOfTerms() && index >= 0){
             this.terms.splice(index, 1)
@@ -49,6 +53,9 @@ const equation = {
     },
     getOperation: function (index = this.numberOfTerms() - 1){
         return this.terms[index][1];
+    },
+    isNegative: function (index = this.numberOfTerms() - 1){
+        return this.terms[index][2];
     },
     clear: function () { 
         this.terms = [];

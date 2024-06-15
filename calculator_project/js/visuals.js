@@ -40,13 +40,15 @@ buttonParenthesis.onclick = () => {addOperation('(');}
 buttonPercentage.onclick = () => {addOperation('%');}
 buttonDivision.onclick = () => {addOperation('\/');}
 buttonMultiplication.onclick = () => {addOperation('x');}
-buttonMinus.onclick = () => {addOperation('-');}
 buttonPlus.onclick = () => {addOperation('+');}
-buttonDot.onclick = () => {addOperation('.');}
+
+buttonMinus.onclick = () => {addMinusSign('-');}
+buttonDot.onclick = () => {addDot();}
 
 buttonClearLast.onclick = () => {removeLastElement();}
 buttonClear.onclick = () => {resetOperation();}
 buttonEqual.onclick = () => {
+    resolveInput();
     displayOperation.textContent = displayResult.textContent;
     displayResult.textContent = '';
 }
